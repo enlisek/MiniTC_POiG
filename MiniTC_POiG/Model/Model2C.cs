@@ -40,11 +40,11 @@ namespace MiniTC_POiG.Model
         public void Copy(string pathWhat, string path1, string pathWhere, string path2 )
         {
             
-            if (!string.IsNullOrEmpty(pathWhere) && pathWhere!="..." && file2.IsDirectory(path2+pathWhere.Substring(3)) && !System.IO.File.Exists(path2 + pathWhere.Substring(3) + "\\" + pathWhat))
+            if (!string.IsNullOrEmpty(pathWhere) && pathWhere!="..." && file2.IsDirectory(path2+IgnoreD(pathWhere)) && !System.IO.File.Exists(path2 + IgnoreD(pathWhere) + "\\" + pathWhat))
             {
-                System.IO.File.Copy(path1+pathWhat, path2+pathWhere.Substring(3) + "\\"+pathWhat);
+                System.IO.File.Copy(path1+pathWhat, path2+ IgnoreD(pathWhere) + "\\"+pathWhat);
             }
-            else if (((!string.IsNullOrEmpty(pathWhere) && pathWhere != "..." && !file2.IsDirectory(path2+pathWhere.Substring(3))) || (string.IsNullOrEmpty(pathWhere)) || pathWhere != "...") && !System.IO.File.Exists(path2 + pathWhat))
+            else if (((!string.IsNullOrEmpty(pathWhere) && pathWhere != "..." && !file2.IsDirectory(path2+ IgnoreD(pathWhere))) || (string.IsNullOrEmpty(pathWhere)) || pathWhere != "...") && !System.IO.File.Exists(path2 + pathWhat))
             {
                 System.IO.File.Copy(path1 + pathWhat, path2 + pathWhat);
             }
