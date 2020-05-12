@@ -10,6 +10,7 @@ namespace MiniTC_POiG.ViewModel
     using Model;
     using BaseClass;
     using System.IO;
+    using System.Diagnostics.Contracts;
 
     internal class ViewModel: ViewModelBase
     {
@@ -96,8 +97,6 @@ namespace MiniTC_POiG.ViewModel
 
         public ViewModel()
         {
-            
-            
             ListOfDrives = model2C.GetDrives();
             SelectedDrive1 = ListOfDrives[0];
             Path1 = SelectedDrive1;
@@ -141,7 +140,16 @@ namespace MiniTC_POiG.ViewModel
                 if (_changeDirectory1 == null)
                 {
                     _changeDirectory1 = new RelayCommand(
-                        arg => { Path1 = model2C.ChangeDirectory(Path1, SelectedItem1); Content1 = file1.GetContent(Path1); },
+                        arg =>{ Path1 = model2C.ChangeDirectory(Path1, SelectedItem1);
+                            if (Content1 == file1.GetContent(Path1))
+                            {
+                                Path1 = file1.DirectoryBefore(Path1);
+                            }
+                            else
+                            {
+                                Content1 = file1.GetContent(Path1);
+                            }
+                            },
                         arg => (!string.IsNullOrEmpty(SelectedItem1)));
                 }
 

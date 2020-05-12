@@ -64,7 +64,7 @@
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClass\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
-    <Page Include="Kontrolki\PanelTC.xaml">
+    <Page Include="PanelTC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,7 +76,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Kontrolki\PanelTC.xaml.cs">
+    <Compile Include="PanelTC.xaml.cs">
       <DependentUpon>PanelTC.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">

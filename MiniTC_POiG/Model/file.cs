@@ -11,9 +11,6 @@ namespace MiniTC_POiG.Model
 {
     class file
     {
-        //private string path;
-        //private List<string> content;
-
         #region konstruktor
         public file()
         {
@@ -22,11 +19,6 @@ namespace MiniTC_POiG.Model
         #endregion
 
         #region properties
-        //public string Path
-        //{
-        //    get { return path; }
-        //    set { path = value; }
-        //}
         public List<string> Content { get; set; }
         
         #endregion
@@ -86,7 +78,7 @@ namespace MiniTC_POiG.Model
                     foreach (string file in files)
                     {
                         string file_name = System.IO.Path.GetFileName(file);
-                        if (File.GetAttributes(file).HasFlag(FileAttributes.Directory))
+                        if (File.GetAttributes(file).HasFlag(FileAttributes.Directory)&& !File.GetAttributes(file).HasFlag(FileAttributes.System) && !File.GetAttributes(file).HasFlag(FileAttributes.Hidden))
                         {
                             file_name = @"<D>" + file_name;
                             zaw.Add(file_name);
@@ -95,16 +87,16 @@ namespace MiniTC_POiG.Model
                     foreach (string file in files)
                     {
                         string file_name = System.IO.Path.GetFileName(file);
-                        if (!File.GetAttributes(file).HasFlag(FileAttributes.Directory))
+                        if (!File.GetAttributes(file).HasFlag(FileAttributes.Directory) && !File.GetAttributes(file).HasFlag(FileAttributes.System) && !File.GetAttributes(file).HasFlag(FileAttributes.Hidden))
                         {
                             zaw.Add(file_name);
                         }
                     }
                     Content = zaw;
                 }
-                catch (Exception)
+                catch (UnauthorizedAccessException)
                 {
-                    Content = GetContent(Directory(path));
+                    Content = GetContent(DirectoryBefore(path));
                 }
             }
             else if (System.IO.File.Exists(path)) //jak to bedzie sciezka do pliku, to zeby zabezpieczyc sie przed bledem, to zwroci content folderu, w ktoym plik sie znajduje

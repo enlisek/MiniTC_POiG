@@ -11,7 +11,7 @@ namespace MiniTC_POiG.Model
 {
     class Model2C
     {
-        //private List<string> drives;
+        
         private file file1;
         private file file2;
 
@@ -21,7 +21,6 @@ namespace MiniTC_POiG.Model
             file2 = new file();
         }
 
-       
         public List<string> Drives { get; set; }
 
         
